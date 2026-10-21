@@ -1,0 +1,205 @@
+[
+  {
+    "objectID": "index.html#the-open-question",
+    "href": "index.html#the-open-question",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "The Open Question",
+    "text": "The Open Question\nCould some of our language change results, especially those involving centralization (back vowel fronting, the Low Back Merger Shift, American Raising) be biased by the fact younger people talk faster? (Kendall 2009, 2013, 2023)"
+  },
+  {
+    "objectID": "index.html#the-upshot",
+    "href": "index.html#the-upshot",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "The Upshot",
+    "text": "The Upshot\n\nYes, both conceptually and empirically (in some case studies), the generational effect appears to be biased in this way.\nWe can get less biased generational change estimates if we include average vowel duration by speaker (not token duration!) in our models.\nWe should start thinking about Causal Inference to avoid potential pitfalls like this."
+  },
+  {
+    "objectID": "index.html#causal-inference",
+    "href": "index.html#causal-inference",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Causal Inference",
+    "text": "Causal Inference\n\nCorrelation does not imply causation.\n\n\nBut… would you really care to listen to me yammer about quantitative *~*associations*~* that you shouldn’t1 interpret causally in any way?\n\n😉"
+  },
+  {
+    "objectID": "index.html#causal-inference-1",
+    "href": "index.html#causal-inference-1",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Causal Inference",
+    "text": "Causal Inference\nBy pre-specifying a causal model, we can identify potential confounds, and adjust for them.\n\n\n\nBackdoor causal path\n\n\n\n\n\nStatistical Adjustment\n\n\n\n\n\n\n(Pearl et al. 2016; Pearl 2022; Textor et al. 2017)"
+  },
+  {
+    "objectID": "index.html#vowel-quality-dag",
+    "href": "index.html#vowel-quality-dag",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Vowel Quality DAG",
+    "text": "Vowel Quality DAG"
+  },
+  {
+    "objectID": "index.html#vowel-quality-dag-1",
+    "href": "index.html#vowel-quality-dag-1",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Vowel Quality DAG",
+    "text": "Vowel Quality DAG\nEffects in the PNC"
+  },
+  {
+    "objectID": "index.html#demonstration-by-simulation",
+    "href": "index.html#demonstration-by-simulation",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Demonstration by Simulation",
+    "text": "Demonstration by Simulation"
+  },
+  {
+    "objectID": "index.html#demonstration-by-simulation-1",
+    "href": "index.html#demonstration-by-simulation-1",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Demonstration by Simulation",
+    "text": "Demonstration by Simulation"
+  },
+  {
+    "objectID": "index.html#demonstration-by-simulation-2",
+    "href": "index.html#demonstration-by-simulation-2",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Demonstration by Simulation",
+    "text": "Demonstration by Simulation\n\nI simulated 100 data sets this way.\nThe models I summarize next were all fit to the same 100 simulated data sets."
+  },
+  {
+    "objectID": "index.html#age-rate-backdoor",
+    "href": "index.html#age-rate-backdoor",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Age & Rate Backdoor",
+    "text": "Age & Rate Backdoor"
+  },
+  {
+    "objectID": "index.html#age-backdoor",
+    "href": "index.html#age-backdoor",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Age Backdoor",
+    "text": "Age Backdoor"
+  },
+  {
+    "objectID": "index.html#closing-the-age-backdoor",
+    "href": "index.html#closing-the-age-backdoor",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Closing the Age Backdoor",
+    "text": "Closing the Age Backdoor"
+  },
+  {
+    "objectID": "index.html#closing-the-age-backdoor-1",
+    "href": "index.html#closing-the-age-backdoor-1",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Closing the Age Backdoor",
+    "text": "Closing the Age Backdoor"
+  },
+  {
+    "objectID": "index.html#closing-the-speech-rate-backdoor",
+    "href": "index.html#closing-the-speech-rate-backdoor",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Closing the speech rate backdoor?",
+    "text": "Closing the speech rate backdoor?"
+  },
+  {
+    "objectID": "index.html#closing-the-speech-rate-backdoor-1",
+    "href": "index.html#closing-the-speech-rate-backdoor-1",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Closing the speech rate backdoor?",
+    "text": "Closing the speech rate backdoor?"
+  },
+  {
+    "objectID": "index.html#closing-the-speech-rate-backdoor-2",
+    "href": "index.html#closing-the-speech-rate-backdoor-2",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Closing the speech rate backdoor?",
+    "text": "Closing the speech rate backdoor?"
+  },
+  {
+    "objectID": "index.html#closing-the-speech-rate-backdoor-3",
+    "href": "index.html#closing-the-speech-rate-backdoor-3",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Closing the speech rate backdoor",
+    "text": "Closing the speech rate backdoor"
+  },
+  {
+    "objectID": "index.html#closing-the-speech-rate-backdoor-4",
+    "href": "index.html#closing-the-speech-rate-backdoor-4",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Closing the speech rate backdoor",
+    "text": "Closing the speech rate backdoor"
+  },
+  {
+    "objectID": "index.html#more-backdoors",
+    "href": "index.html#more-backdoors",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "More Backdoors?",
+    "text": "More Backdoors?"
+  },
+  {
+    "objectID": "index.html#a-centralizing-change-american-raising-in-philadelphia",
+    "href": "index.html#a-centralizing-change-american-raising-in-philadelphia",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "A centralizing change: American Raising in Philadelphia",
+    "text": "A centralizing change: American Raising in Philadelphia\n\nData extracted from the Philadelphia Neighborhood Corpus using new-fave.\nNearey normalized with {tidynorm}.\nFiltered to just white speakers’ pre-voiceless /ay/ tokens\n\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                gender\n                speakers\n                median tokens/speaker\n                total tokens\n                dob range\n              \n        \n        \n        \n                \n                  men\n                  146\n                  41.5\n                  8,846\n                  1889 to 1998\n                \n                \n                  women\n                  182\n                  42.0\n                  12,002\n                  1888 to 1996\n                \n        \n      \n    \n\n\n\n\nAll models fit with {brms} with random intercepts by speaker and word.\nInteractions with gender were included for DOB, and age when it was included."
+  },
+  {
+    "objectID": "index.html#a-centralizing-change-american-raising-in-philadelphia-1",
+    "href": "index.html#a-centralizing-change-american-raising-in-philadelphia-1",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "A centralizing change: American Raising in Philadelphia",
+    "text": "A centralizing change: American Raising in Philadelphia\nAs a centralizing change, the speech rate back door could lead to overestimating the DOB effect."
+  },
+  {
+    "objectID": "index.html#american-raising-results",
+    "href": "index.html#american-raising-results",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "American Raising Results",
+    "text": "American Raising Results"
+  },
+  {
+    "objectID": "index.html#american-raising-results-1",
+    "href": "index.html#american-raising-results-1",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "American Raising Results",
+    "text": "American Raising Results"
+  },
+  {
+    "objectID": "index.html#a-peripheralizing-change-ey-raising-in-philadelphia",
+    "href": "index.html#a-peripheralizing-change-ey-raising-in-philadelphia",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "A peripheralizing change: /ey/ Raising in Philadelphia",
+    "text": "A peripheralizing change: /ey/ Raising in Philadelphia\n\nData extracted from the Philadelphia Neighborhood Corpus using new-fave.\nNearey normalized with {tidynorm}.\nFiltered to just white speakers’ pre-consonantal /ey/.\n\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                gender\n                speakers\n                median tokens/speaker\n                total tokens\n                dob range\n              \n        \n        \n        \n                \n                  men\n                  146\n                  62\n                  12,071\n                  1889 to 1998\n                \n                \n                  women\n                  182\n                  66\n                  15,276\n                  1888 to 1996\n                \n        \n      \n    \n\n\n\n\nAll models fit with {brms} with random intercepts by speaker and word.\nInteractions with gender were included for DOB, and age when it was included."
+  },
+  {
+    "objectID": "index.html#a-peripheralizing-change-ey-raising-in-philadelphia-1",
+    "href": "index.html#a-peripheralizing-change-ey-raising-in-philadelphia-1",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "A peripheralizing change: /ey/ Raising in Philadelphia",
+    "text": "A peripheralizing change: /ey/ Raising in Philadelphia\nAs a peripheralizing change, the speech rate back door could lead us to underestimating the DOB effect."
+  },
+  {
+    "objectID": "index.html#ey-raising-results",
+    "href": "index.html#ey-raising-results",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "/ey/ Raising Results",
+    "text": "/ey/ Raising Results"
+  },
+  {
+    "objectID": "index.html#ey-raising-results-1",
+    "href": "index.html#ey-raising-results-1",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "/ey/ Raising Results",
+    "text": "/ey/ Raising Results"
+  },
+  {
+    "objectID": "index.html#conclusions",
+    "href": "index.html#conclusions",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "Conclusions",
+    "text": "Conclusions\n\nIt would be a good idea to include average vowel duration by speaker in our statistical models of language change.\nWe should probably start laying out our causal models more explicitly, since not doing so can lead us to both over- and underestimate effects of interest."
+  },
+  {
+    "objectID": "index.html#references",
+    "href": "index.html#references",
+    "title": "Speech Rate and Causal Inference in Sound Change",
+    "section": "References",
+    "text": "References\n\n\nKendall, Tyler. 2009. Speech Rate, Pause and Linguistic Variation: An Examination Through the Sociolinguistic Archive and Analysis Project.\n\n\nKendall, Tyler. 2013. Speech Rate, Pause and Sociolinguistic Variation. Palgrave Macmillan UK. https://doi.org/10.1057/9781137291448.\n\n\nKendall, Tyler. 2023. “Sociophonetics and Speech Rate and Pause.” In The Routledge Handbook of Sociophonetics, 1st ed. Routledge. https://doi.org/10.4324/9781003034636-4.\n\n\nLabov, William. 1963. “The Social Motivation of a Sound Change.” Word 19 (3): 273–309. https://doi.org/10.1080/00437956.1963.11659799.\n\n\nLabov, William. 1994. Principles of Linguistic Change. Volume 1: Internal Factors. Blackwell.\n\n\nLabov, William, and Ingrid Rosenfelder. 2011. New Tools and Methods for Very Large Scale Measurements of Very Large Corpora.\n\n\nLabov, William, Ingrid Rosenfelder, and Josef Fruehwald. 2013. “One Hundred Years of Sound Change in Philadelphia: Linear Incrementaion, Reversal, and Reanalysis.” Language 89 (1): 30–65. https://doi.org/10.1353/lan.2013.0015.\n\n\nLindblom, B. 1963. “Spectrographic Study of Vowel Reduction.” The Journal of the Acoustical Society of America 35 (11): 1773–81. https://doi.org/10.1121/1.1918816.\n\n\nPearl, Judea. 2022. Causality: Models, Reasoning, and Inference. Second edition, reprinted with corrections. Cambridge University Press.\n\n\nPearl, Judea, Madelyn Glymour, and Nicholas P. Jewell. 2016. Causal Inference in Statistics: A Primer. John Wiley & Sons.\n\n\nSankoff, Gillian. 2004. “Adolescents, Young Adults, and the Critical Period: Two Case Studies from ‘Seven up’.” In Sociolinguistic Variation: Critical Reflections, edited by Carmen Fought. Oxford University Press.\n\n\nTextor, Johannes, Benito Van Der Zander, Mark S. Gilthorpe, Maciej Liśkiewicz, and George T. H. Ellison. 2017. “Robust Causal Inference Using Directed Acyclic Graphs: The r Package ‘Dagitty’.” International Journal of Epidemiology, January, dyw341. https://doi.org/10.1093/ije/dyw341."
+  }
+]
