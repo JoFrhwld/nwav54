@@ -1,0 +1,1214 @@
+---
+title: "Speech Rate and Causal Inference in Sound Change"
+author: 
+  - name: Josef Fruehwald
+    affiliations:
+      - name: University of Kentucky
+format: 
+  revealjs:
+    logo: assets/nwav-logo.png
+    center: true
+filters:
+  - typst-render
+fig-width: 5
+fig-asp: 0.618
+fig-format: svg
+bibliography: references.bib
+nocite: |
+ @Labov1963; @Labov1994; @Sankoff2004; @lindblomSpectrographicStudyVowel1963; @pnc; @labovOneHundredYears2013
+---
+
+```{r}
+source(here::here("_defaults.R"))
+library(ggdist)
+library(ggtext)
+library(distributional)
+library(ggreveal)
+library(tinytable)
+library(colorspace)
+```
+
+## The Open Question
+
+Could some of our language change results, especially those involving centralization (back vowel fronting, the Low Back Merger Shift, American Raising) be biased by the fact younger people talk faster?
+[@Kendall2009; @Kendall2013a; @kendallSociophoneticsSpeechRate2023]
+
+## The Upshot
+
+::: incremental
+- Yes, both conceptually and empirically (in some case studies), the generational effect appears to be biased in this way.
+
+- We can get less biased generational change estimates if we include average vowel duration by speaker (*not* token duration!) in our models.
+
+- We should start thinking about Causal Inference to avoid potential pitfalls like this.
+:::
+
+## Causal Inference
+
+> Correlation does not imply causation.
+
+::: fragment
+But...
+would you really care to listen to me yammer about quantitative [\*\~\*associations\*\~\*]{.fancy} that you *shouldn't*[^1] interpret causally in any way?
+:::
+
+[^1]: [😉]{.fragment}
+
+## Causal Inference
+
+By pre-specifying a causal model, we can identify potential confounds, and adjust for them.
+
+::::: {layout-ncol="2"}
+::: {}
+Backdoor causal path
+
+```{typst}
+//| classes: r-stretch
+#import "def_dag.typ": dag, blue, green, red
+#set text(font: "Public Sans")
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+#let edge = edge.with(marks: "-|>")
+#set text(size: 2em)
+#diagram(
+  spacing: (40pt, 10pt),
+  node-stroke: 1pt,
+  node-corner-radius: 5pt,
+  edge-stroke: 2pt,
+  cell-size: 20pt,  
+  {
+    node((0,0), text(fill: white)[voicing], name: <v>, fill: blue)
+    node((0.5,2), text(fill:white)[duration], name: <d>, fill: red)
+    node((1,0), text(fill: white)[\[ay\] centralization], name: <a>, fill: blue)
+  },
+  {
+    edge(<v>, <d>, stroke: red)
+    edge(<d>, <a>, stroke: red)
+    edge(<v>, <a>, stroke: blue)
+  }
+)
+```
+:::
+
+::: fragment
+Statistical Adjustment
+
+```{typst}
+//| classes: r-stretch
+#import "def_dag.typ": dag, blue, green, red
+#set text(font: "Public Sans")
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+#let edge = edge.with(marks: "-|>")
+#set text(size: 2em)
+#diagram(
+  spacing: (40pt, 10pt),
+  node-stroke: 1pt,
+  node-corner-radius: 5pt,
+  edge-stroke: 2pt,
+  cell-size: 20pt,  
+  {
+    node((0,0), text(fill: white)[voicing], name: <v>, fill: blue)
+    node((0.5,2), text(fill:white)[duration], name: <d>, fill: green)
+    node((1,0), text(fill: white)[\[ay\] centralization], name: <a>, fill: blue)
+  },
+  {
+    edge(<v>, <d>)
+    edge(<d>, <a>)
+    edge(<v>, <a>, stroke: blue)
+  }
+)
+```
+:::
+:::::
+
+[@pearlCausalInferenceStatistics2016; @pearlCausalityModelsReasoning2022; @textorRobustCausalInference2017]
+
+## Vowel Quality DAG
+
+```{typst}
+#import "def_dag.typ": dag
+#set text(font: "Public Sans")
+
+#dag(
+  labs: (
+    "age->arate": text(size: 10pt)[Kendall (2023)],
+    "dur->vq": box(fill:white, inset: 2pt)[#text(size: 10pt)[Lindblom (1963)]],
+    "dob->vq": box(fill:white, inset: 2pt)[#text(size: 10pt)[Labov (1963)]],
+    "age->vq": box(fill:white, inset: 2pt)[#text(size: 10pt)[Labov (1994); Sankoff (2004)]]        
+  )
+)
+```
+
+## Vowel Quality DAG
+
+Effects in the PNC
+
+```{r}
+rate <- read_csv(here::here("data/phrase_rates.csv"))
+vowel_rate <- read_csv(here::here("data/phone_rate.csv")) |> 
+  mutate(
+    dur = Phone_end - Phone_start
+  ) 
+```
+
+::::: columns
+::: {.column width="50%"}
+```{r}
+#| fig-asp: 1
+#| fig-width: 4
+rate |> 
+  filter(
+    vowel > 0,
+    Phrase_dur <= 10
+  ) |>
+  mutate(
+    gender = case_match(
+      sex,
+      "m" ~ "men",
+      "f" ~ "women"
+    )
+  ) |> 
+  summarise(
+    .by = c(file_name, age, gender),
+    rate = exp(mean(log(rate)))
+  ) |> 
+  drop_na() ->
+  avg_rate
+
+avg_rate |> 
+  ggplot(
+    aes(age, rate)
+  ) +
+  geom_point(
+    size = 1,
+    alpha = 0.5
+  ) +
+  stat_smooth(
+    method = mgcv::gam,
+    formula = y ~ s(x, bs = 'cs'),
+    #color = ptol_blue,
+    linewidth = 2
+  ) +  
+  labs(
+    x = "age",
+    y = "mean articulation rate"
+  ) +
+  scale_y_log10() +
+  theme_sub_axis(
+    title = element_text(size = 20)
+  )  
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-asp: 1
+#| fig-width: 4
+vowel_rate |> 
+  select(
+    file_name,
+    Phone_start,
+    Phone_end,
+    Phone_label
+  ) |> 
+  mutate(
+    dur = Phone_end - Phone_start
+  )  |> 
+  summarise(
+    .by = c(file_name),
+    dur = exp(mean(log(dur*1000)))
+  ) |>   
+  left_join(
+    avg_rate |> select(file_name, rate)
+  )  |> 
+  ggplot(
+    aes(rate, dur)
+  ) + 
+  geom_point(
+    size = 1,
+    alpha = 0.5
+  ) +
+  stat_smooth(
+    method = mgcv::gam,
+    formula = y ~ s(x),
+    #color = ptol_blue,
+    linewidth = 2
+  ) +
+  scale_x_log10(
+    breaks = c(4, 5, 6)
+  ) +
+  scale_y_log10(
+    breaks = c(50, 75, 100)
+  ) +
+  labs(
+    x = "mean articulation rate",
+    y = "mean vowel duration (ms)"
+  ) +
+  theme_sub_axis(
+    title = element_text(size = 20)
+  )
+```
+:::
+:::::
+
+## Demonstration by Simulation
+
+```{typst}
+#import "def_dag.typ": dag
+#set text(font: "Public Sans")
+
+#dag(
+  labs: (
+    "age->vq": box(fill:white)[#text(size:2em)[0]],
+    "age->arate": box(fill:white)[#text(size:2em)[-2]],
+    "dob->vq": box(fill:white)[#text(size:2em)[0]],
+    "arate->adur": box(fill:white, inset: 5pt)[#text(size:2em)[-2]],
+    "dur->vq": box(fill:white)[#text(size:2em)[2]],
+    "unkt->rdur": box(fill:white)[#text(size:2em)[-2]],
+    "unkt->vq": box(fill:white)[#text(size:2em)[-2]]
+  ),
+  inc-backdoor1: false
+)
+```
+
+```{r}
+#| eval: false
+ests <- map(1:100, ~sim_fit(
+  xt_slope = -2, 
+  xt_vq_slope = -2,
+  age_slope = -2,
+  rate_slope = -2,
+  dur_vq_slope = 2,
+  age_vq_slope = 0,
+  dob_vq_slope = 0
+), 
+.progress = T
+) |> 
+  list_rbind()
+```
+
+```{r}
+#| eval: false
+write_csv(ests, "sim_dat/ests.csv")
+```
+
+```{r}
+ests <- read_csv("sim_dat/ests.csv")
+```
+
+## Demonstration by Simulation
+
+```{r}
+simulate_data(
+  xt_slope = -2, 
+  xt_vq_slope = -2,
+  age_slope = -2,
+  rate_slope = -2,
+  dur_vq_slope = 2,
+  age_vq_slope = 0,
+  dob_vq_slope = 0
+) ->
+  dat
+```
+
+```{r}
+#| fig-asp: 1
+#| fig-width: 4
+#| layout-ncol: 3
+dat |> 
+  select(speaker, age, rate) |> 
+  distinct() |> 
+  ggplot(
+    aes(age, rate)
+  ) + 
+  geom_point() +
+  labs(
+    title = "age -> mean rate",
+    y = "mean rate"
+  ) +
+  theme_sub_axis(
+    title = element_text(size = 24)
+  )
+
+dat |> 
+  select(speaker, rate, adur) |> 
+  distinct() |> 
+  ggplot(
+    aes(rate, adur)
+  ) + 
+  geom_point() + 
+  labs(
+    title = "mean rate -> mean dur",
+    x = "mean rate",
+    y = "mean dur"
+  ) +
+  theme_sub_axis(
+    title = element_text(size = 24)
+  ) 
+
+dat |> 
+  ggplot(
+    aes(dur, vq)
+  ) + 
+  geom_point() +
+  labs(
+    title = "dur -> vowel periph",
+    x = "dur",
+    y = "vowel peripherality"
+  ) +
+  theme_sub_axis(
+    title = element_text(size = 24)
+  )
+```
+
+## Demonstration by Simulation
+
+- I simulated 100 data sets this way.
+
+- The models I summarize next were all fit to the same 100 simulated data sets.
+
+## Age & Rate Backdoor
+
+```{typst}
+#import "def_dag.typ": dag, blue, red, green
+#set text(font: "Public Sans")
+
+#dag(
+  fills: (
+    "dob": blue, "vq": blue,
+    "age": red, "dur": red,
+    "adur": red, "arate": red
+  ),
+  strokes: (
+    "dob->vq": blue+2pt,
+    "age->vq": red+2pt,
+    "dob->age": red+2pt,
+    "dur->vq": red+2pt,
+    "adur->dur": red+2pt,
+    "arate->adur": red+2pt,
+    "age->arate": red+2pt
+  )
+)
+```
+
+## Age Backdoor
+
+```{r}
+sym_limits <- function(x){
+  max_l <- x |> abs() |> max()
+  c(-max_l, max_l)
+}
+```
+
+```{r}
+#| fig-width: 3
+#| fig-asp: 1
+#| fig-align: center
+ests |> 
+  filter(
+    mod == "~dob"
+  ) |> 
+  ggplot(
+    aes(
+      estimate
+    )
+  ) + 
+  geom_vline(
+    xintercept = 0,
+    linewidth = 0.3
+  ) +
+  stat_slab(
+    density = "histogram",
+    aes(
+      fill = after_stat(-x)
+    )
+  ) +
+  labs(
+    title = "vp ~ dob"
+  ) +
+  scale_fill_continuous(
+    limits = sym_limits,
+  ) +
+  scale_x_continuous(
+    limits = c(-2.6, 2.6),
+    breaks = c(-2, -1, 0, 1, 2),
+    labels = c("-2", "-1", "<b style='font-size:16pt;'>0</b>", "1", "2")
+  ) +
+  guides(
+    fill = "none"
+  ) +
+  facet_wrap(~term, label = "label_both")  +
+  theme_no_y() +
+  theme(
+    axis.text.x = element_markdown()
+  )
+```
+
+## Closing the Age Backdoor
+
+```{typst}
+#import "def_dag.typ": dag, blue, red, green
+#set text(font: "Public Sans")
+
+#dag(
+  fills: (
+    "dob": blue, "vq": blue,
+    "age": green, "dur": red,
+    "adur": red, "arate": red
+  ),
+  strokes: (
+    "dob->vq": blue+2pt,
+    "dur->vq": red+2pt,
+    "adur->dur": red+2pt,
+    "arate->adur": red+2pt,
+    "age->arate": red+2pt    
+  )
+)
+```
+
+## Closing the Age Backdoor
+
+```{r}
+#| fig-align: center
+ests |> 
+  filter(
+    mod == "~dob + age"
+  ) |> 
+  ggplot(
+    aes(
+      estimate
+    )
+  ) + 
+  geom_vline(
+    xintercept = 0,
+    linewidth = 0.3
+  ) +
+  stat_slab(
+    density = "histogram",
+    aes(
+      fill = after_stat(-x)
+    ),
+    normalize = "panels"
+  ) +  
+
+  scale_y_tight() +
+  scale_x_continuous(
+    limits = c(-2.6, 2.6),
+    breaks = c(-2, -1, 0, 1, 2),
+    labels = c("-2", "-1", "<b style='font-size:16pt;'>0</b>", "1", "2")
+  ) +
+  scale_fill_continuous(
+    limits = sym_limits,
+  ) +  
+  labs(
+    title = "vp ~ dob + age"
+  ) +
+  facet_wrap(~term, label = "label_both") +
+  guides(fill = "none") +
+  theme_sub_panel(
+    border = element_rect()
+  ) +
+  theme_no_y() +
+  theme(
+    axis.text.x = element_markdown()
+  )  
+```
+
+## Closing the speech rate backdoor?
+
+```{typst}
+#import "def_dag.typ": dag, blue, red, green
+#set text(font: "Public Sans")
+
+#dag(
+  fills: (
+    "dob": blue, "vq": blue,
+    "age": blue,
+    "dur": red, "adur": red,
+    "arate": red
+  ),
+  strokes: (
+    "dob->vq": blue+2pt,
+    "age->vq": blue+2pt,
+    "dur->vq": red+2pt,
+    "adur->dur": red+2pt,
+    "arate->adur": red+2pt,
+    "age->arate": red+2pt
+  )
+)
+```
+
+## Closing the speech rate backdoor?
+
+```{typst}
+#import "def_dag.typ": dag, blue, red, green
+#set text(font: "Public Sans")
+
+#dag(
+  fills: (
+    "dob": blue, "vq": blue,
+    "age": blue,
+    "dur": green, "adur": red,
+    "arate": red,
+    "unkt": red,
+    "rdur": red
+  ),
+  strokes: (
+    "dob->vq": blue+2pt,
+    "age->vq": blue+2pt,
+    "arate->adur": red+2pt,
+    "age->arate": red+2pt,
+    "adur->rdur": red+2pt,
+    "unkt->vq":  red+2pt,
+    "unkt->rdur":  red+2pt
+  ),
+  inc-backdoor1: true
+)
+```
+
+## Closing the speech rate backdoor?
+
+```{r}
+#| fig-align: center
+real <- tibble(
+  term = c("age", "dob"),
+  estimate = c(0, 0)
+)
+ests |> 
+  filter(
+    mod == "~dob + age + dur",
+    term %in% c("age", "dob")
+  ) |> 
+  ggplot(
+    aes(estimate)
+  ) +
+  geom_vline(
+    data = real,
+    aes(xintercept = estimate),
+    linewidth = 0.3
+  ) +
+  stat_slab(
+    density = "histogram",
+    aes(
+      fill = after_stat(-x)
+    ),
+    normalize = "panels"
+  ) +  
+  # geom_dots(
+  #   aes(
+  #     fill = -estimate
+  #   )
+  # ) + 
+  scale_y_tight() +
+  scale_fill_continuous(
+    limits = sym_limits
+  ) +
+  scale_x_continuous(
+    limits = c(-2.6, 2.6),
+    breaks = c(-2, -1, 0, 1, 2),
+    labels = c("-2", "-1", "<b style='font-size:16pt;'>0</b>", "1", "2")
+  ) +
+  labs(title = "vp ~ dob + age + dur") +
+  guides(fill = "none") +
+  facet_wrap(~term) +
+  theme_no_y() +
+  theme_sub_panel(
+    border = element_rect()
+  ) +
+  theme(
+    axis.text.x = element_markdown()
+  )  
+```
+
+## Closing the speech rate backdoor
+
+```{typst}
+#import "def_dag.typ": dag, blue, red, green
+#set text(font: "Public Sans")
+
+#dag(
+  fills: (
+    "dob": blue, "vq": blue,
+    "age": blue,
+    "adur": green,
+    "dur": red
+  ),
+  strokes: (
+    "dob->vq": blue+2pt,
+    "age->vq": blue+2pt,
+    "dur->vq": red+2pt,
+    "adur->dur": red+2pt,
+  ),
+  inc-backdoor1: false
+)
+
+```
+
+## Closing the speech rate backdoor
+
+```{r}
+#| fig-align: center
+ests |> 
+  filter(
+    mod == "~dob + age + adur",
+    term %in% c("dob", "age")
+  ) |> 
+  ggplot(
+    aes(estimate)
+  ) +
+  geom_vline(
+    data = real,
+    aes(xintercept = estimate),
+    linewidth = 0.3
+  ) +
+  stat_slab(
+    density = "histogram",
+    aes(
+      fill = after_stat(x)
+    ),
+    normalize = "panels"
+  ) +  
+  # geom_dots(
+  #   aes(
+  #     fill = estimate
+  #   )
+  # ) + 
+  scale_y_tight() +
+  scale_x_continuous(
+    limits = c(-2.6, 2.6),
+    breaks = c(-2, -1, 0, 1, 2),
+    labels = c("-2", "-1", "<b style='font-size:16pt;'>0</b>", "1", "2")
+  ) +
+  scale_fill_continuous(
+    limits = sym_limits
+  ) +
+  guides(fill = "none") +
+  labs(title = "vp ~ dob + age + avg_dur") +
+  facet_wrap(~term) +
+  theme_no_y() +
+  theme_sub_panel(
+    border = element_rect()
+  ) +
+  theme(
+    axis.text.x = element_markdown()
+  )  
+```
+
+## More Backdoors?
+
+```{typst}
+#import "def_dag.typ": dag, blue, red, green
+#set text(font: "Public Sans")
+
+#dag(
+  fills: (
+    "dob": blue, "vq": blue,
+    "age": blue,
+    "adur": green,
+    "dur": red
+  ),
+  strokes: (
+    "dob->vq": blue+2pt,
+    "age->vq": blue+2pt,
+    "dur->vq": red+2pt,
+    "adur->dur": red+2pt,
+  ),
+  inc-xs: true
+)
+```
+
+## A centralizing change: American Raising in Philadelphia {.smaller}
+
+- Data extracted from the Philadelphia Neighborhood Corpus using new-fave.
+
+- Nearey normalized with `{tidynorm}`.
+
+- Filtered to just white speakers' pre-voiceless /ay/ tokens
+
+```{r}
+ay0_dat <- read_csv("data/ay0_dat.csv")
+```
+
+```{r}
+ay0_dat |> 
+  select(
+    idstring, gender, dob
+  ) |> 
+  drop_na() |> 
+  mutate(
+    gender = replace_values(
+      gender,
+      "m" ~ "men",
+      "f" ~ "women"
+    )
+  ) |> 
+  summarise(
+    .by = c(idstring,gender, dob),
+    n = n()
+  ) |> 
+  summarise(
+    .by = gender,
+    speakers = n(),
+    `median tokens/speaker` = median(n),
+    `total tokens` = sum(n),
+    dob_low = min(dob),
+    dob_hi = max(dob)
+  ) |> 
+  unite(
+    dob_low:dob_hi,
+    col = "dob range",
+    sep = " to "
+  ) |> 
+  tt() |> 
+  format_tt(
+    j = "total tokens",
+    num_mark_big = ",",
+    digit = 2
+  )  |> 
+  style_tt(
+    j = 2:4,
+    align = "r"
+  )
+```
+
+- All models fit with `{brms}` with random intercepts by speaker and word.
+
+- Interactions with gender were included for DOB, and age when it was included.
+
+## A centralizing change: American Raising in Philadelphia
+
+As a centralizing change, the speech rate back door could lead to *overestimating* the DOB effect.
+
+## American Raising Results
+
+```{r}
+ay0_noage_mod <- read_rds(here::here("models/ay0_age_mod.rds"))
+ay0_nodur_mod <- read_rds(here::here("models/ay0_nodur_mod.rds"))
+ay0_ldur_mod <- read_rds(here::here("models/ay0_ldur_mod.rds"))
+ay0_full_mod <- read_rds(here::here("models/ay0_flat_mod.rds"))
+```
+
+```{r}
+list(
+  `dob` = ay0_noage_mod,
+  `dob, age` = ay0_nodur_mod,
+  `dob, age, dur` = ay0_ldur_mod,
+  `dob, age, adur` = ay0_full_mod
+) |> 
+  map(
+    ~ .x |> 
+      #set_modeldata(ay0_dat |> select(-group)) |> 
+      comparisons(
+      newdata = datagrid(gender = unique, age = 45),
+      variables = list(
+        dob = 25
+      ),
+      by = "gender",
+      re_formula = NA
+    ) |> 
+      get_draws()
+  ) |> 
+  list_rbind(
+    names_to = "mod"
+  ) ->
+  all_comp
+```
+
+```{r}
+all_comp |> 
+  mutate(
+    mod = fct_reorder(mod, -draw),
+    gender = replace_values(
+      gender,
+      "f" ~ "women",
+      "m" ~ "men"
+    )
+  ) |> 
+  ggplot(
+    aes(draw, fill = mod, group = mod)
+  ) +
+  geom_vline(
+    xintercept = 0,
+    aes(group = "dob")
+  ) +
+  stat_slab(
+    color = "black"
+  ) +
+  scale_x_continuous(
+    name = "dob+25 estimate",
+    guide = guide_axis(angle = -45, check.overlap = T),
+    breaks = c(-0.1, -0.05, 0)
+  ) +
+  scale_y_tight() +  
+  scale_fill_manual(
+    values = adjust_transparency(
+        c(ptol_red, ptol_blue, ptol_purple, ptol_green),
+        alpha = 0.6
+      ),
+    limits = rev    
+  ) +
+  facet_wrap(~gender) +
+  theme_no_y() +
+  theme_sub_legend(
+    position = "top"
+  ) +
+  theme_sub_panel(
+    border = element_rect()
+  ) -> p
+
+reveal_groups(
+  p, 
+  order = c(1, 6,5,4,3,2)
+) ->
+  plots
+```
+
+::: {.r-stack style="width=100%"}
+```{r}
+#| out-width: 150%
+#| fig-align: center
+#| fig-width: 7
+#| fig-asp: 0.7 
+#| fig-format: svg
+#| style: "width=100%;,margin=0pt;"
+plots[[3]] +
+  annotate(
+    geom = "rect",
+    xmin = 0.18, ymin = 0.89,
+    xmax = 0.29, ymax = 0.97,
+    fill = NA,
+    color = "black",
+    linewidth = 1
+  ) 
+```
+
+```{r}
+#| classes: .fragment
+#| fig-align: center
+#| out-width: 100%
+#| fig-width: 7
+#| fig-asp: 0.7
+#| fig-format: svg
+plots[[4]] +
+  annotate(
+    geom = "rect",
+    xmin = 0.29, ymin = 0.89,
+    xmax = 0.45, ymax = 0.97,
+    fill = NA,
+    color = "black",
+    linewidth = 1
+  ) 
+```
+
+```{r}
+#| classes: .fragment
+#| fig-align: center
+#| out-width: 100%
+#| fig-width: 7
+#| fig-asp: 0.7
+#| fig-format: svg
+plots[[5]] +
+  annotate(
+    geom = "rect",
+    xmin = 0.45, ymin = 0.89,
+    xmax = 0.67, ymax = 0.97,
+    fill = NA,
+    color = "black",
+    linewidth = 1
+  ) 
+```
+
+```{r}
+#| classes: .fragment
+#| fig-align: center
+#| out-width: 100%
+#| fig-width: 7
+#| fig-asp: 0.7
+#| fig-format: svg
+(plots[[6]] +
+   annotate(
+     geom = "rect",
+     xmin = 0.67, ymin = 0.89,
+     xmax = 0.9, ymax = 0.97,
+     fill = NA,
+     color = "black",
+     linewidth = 1
+   ) ) |> 
+   print()
+```
+:::
+
+## American Raising Results
+
+```{r}
+list(
+  `dob` = ay0_noage_mod,
+  `dob, age, adur` = ay0_full_mod
+) |> 
+  map(
+   ~.x |>   predictions(
+      newdata = datagrid(
+        dob = 1900:1990,
+        gender = unique,
+        age = 45
+      ),
+      re_formula = NA
+    ) |> 
+     get_draws()
+  ) |> 
+  list_rbind(
+    names_to = "model"
+  ) ->
+  preds
+```
+
+```{r}
+#| fig-width: 6
+preds |> 
+  mutate(
+    gender = replace_values(
+      gender,
+      "f" ~ "women",
+      "m" ~ "men"
+    )
+  ) |> 
+  ggplot(
+    aes(
+      dob, draw
+    )
+  ) + 
+  stat_ribbon(
+    .width = 0.89,
+    aes(fill = gender),
+    alpha = 0.15
+  ) +
+  stat_summary(
+    fun = mean,
+    geom = "line",
+    aes(
+      color = gender
+    ),
+    linewidth = 1
+  ) +
+  labs(
+    y = "normalized F1"
+  ) +
+  facet_wrap(~model, labeller = "label_both") +
+  theme_sub_legend(
+    position = "inside",
+    position.inside = c(0.9, 0.8)
+  )
+```
+
+## A peripheralizing change: /ey/ Raising in Philadelphia {.smaller}
+
+- Data extracted from the Philadelphia Neighborhood Corpus using new-fave.
+
+- Nearey normalized with `{tidynorm}`.
+
+- Filtered to just white speakers' pre-consonantal /ey/.
+
+```{r}
+ey <- read_csv("data/ey_dat.csv")
+```
+
+```{r}
+ey |> 
+  select(
+    idstring, gender, dob
+  ) |> 
+  drop_na() |> 
+  mutate(
+    gender = replace_values(
+      gender,
+      "m" ~ "men",
+      "f" ~ "women"
+    )
+  ) |> 
+  summarise(
+    .by = c(idstring,gender, dob),
+    n = n()
+  ) |> 
+  summarise(
+    .by = gender,
+    speakers = n(),
+    `median tokens/speaker` = median(n),
+    `total tokens` = sum(n),
+    dob_low = min(dob),
+    dob_hi = max(dob)
+  ) |> 
+  unite(
+    dob_low:dob_hi,
+    col = "dob range",
+    sep = " to "
+  ) |> 
+  tt() |> 
+  format_tt(
+    j = "total tokens",
+    num_mark_big = ",",
+    digit = 2
+  )  |> 
+  style_tt(
+    j = 2:4,
+    align = "r"
+  )
+```
+
+- All models fit with `{brms}` with random intercepts by speaker and word.
+
+- Interactions with gender were included for DOB, and age when it was included.
+
+## A peripheralizing change: /ey/ Raising in Philadelphia
+
+As a peripheralizing change, the speech rate back door could lead us to *underestimating* the DOB effect.
+
+## /ey/ Raising Results
+
+```{r}
+ey_noage_mod <- read_rds(here::here("models/ey_noage_mod.rds"))
+ey_full_mod <- read_rds(here::here("models/ey_all_mod.rds"))
+```
+
+```{r}
+list(
+  `dob` = ey_noage_mod,
+  `dob, age, adur` = ey_full_mod
+) |> 
+  map(
+    ~ .x |> 
+      #set_modeldata(ay0_dat |> select(-group)) |> 
+      comparisons(
+      newdata = datagrid(gender = unique, age = 45),
+      variables = list(
+        dob = 25
+      ),
+      by = "gender",
+      re_formula = NA
+    ) |> 
+      get_draws()
+  ) |> 
+  list_rbind(
+    names_to = "mod"
+  ) ->
+  ey_all_comp
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 100%
+#| fig-width: 7
+#| fig-asp: 0.7
+#| fig-format: svg
+ey_all_comp |> 
+  mutate(
+    mod = fct_reorder(mod, draw),
+    gender = replace_values(
+      gender,
+      "f" ~ "women",
+      "m" ~ "men"
+    )
+  ) |> 
+  ggplot(
+    aes(draw, fill = mod, group = mod)
+  ) +
+  geom_vline(
+    xintercept = 0,
+    aes(group = "dob")
+  ) +
+  stat_slab(
+    color = "black"
+  ) +
+  scale_x_continuous(
+    name = "dob+25 estimate",
+    guide = guide_axis(angle = -45, check.overlap = T),
+    breaks = c(-0.1, -0.05, 0)
+  ) +
+  scale_y_tight() +  
+  scale_fill_manual(
+    values = adjust_transparency(
+        c(ptol_red, ptol_green),
+        alpha = 0.6
+      ),
+    limits = rev    
+  ) +
+  facet_wrap(~gender) +
+  theme_no_y() +
+  theme_sub_legend(
+    position = "top"
+  ) +
+  theme_sub_panel(
+    border = element_rect()
+  )
+```
+
+## /ey/ Raising Results
+
+```{r}
+list(
+  `dob` = ey_noage_mod,
+  `dob, age, adur` = ey_full_mod
+) |> 
+  map(
+   ~.x |>   predictions(
+      newdata = datagrid(
+        dob = 1900:1990,
+        gender = unique,
+        age = 45
+      ),
+      re_formula = NA
+    ) |> 
+     get_draws()
+  ) |> 
+  list_rbind(
+    names_to = "model"
+  ) ->
+  ey_preds
+```
+
+```{r}
+#| fig-width: 6
+ey_preds |> 
+  mutate(
+    gender = replace_values(
+      gender,
+      "f" ~ "women",
+      "m" ~ "men"
+    )
+  ) |> 
+  ggplot(
+    aes(
+      dob, draw
+    )
+  ) + 
+  stat_ribbon(
+    .width = 0.89,
+    aes(fill = gender),
+    alpha = 0.15
+  ) +
+  stat_summary(
+    fun = mean,
+    geom = "line",
+    aes(
+      color = gender
+    ),
+    linewidth = 1
+  ) +
+  labs(
+    y = "normalized F1"
+  ) +
+  facet_wrap(~model, labeller = "label_both") +
+  theme_sub_legend(
+    position = "inside",
+    position.inside = c(0.9, 0.8)
+  )
+```
+
+## Conclusions
+
+- It would be a good idea to include average vowel duration by speaker in our statistical models of language change.
+
+- We should probably start laying out our causal models more explicitly, since not doing so can lead us to both over- and underestimate effects of interest.
+
+## References {.smaller}
+
+::: {#refs style="font-size: 0.8em;"}
+:::

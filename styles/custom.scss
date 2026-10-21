@@ -1,0 +1,20 @@
+/*-- scss:defaults --*/
+
+
+/*-- scss:rules --*/
+.fancy {
+  font-family: "Lobster";
+}
+
+.slide-number,
+.reveal.has-logo .slide-number {
+  bottom: 10px !important;
+  right: 7% !important;
+  left: auto;
+  top: unset !important;
+  color: $body-color !important;
+
+  a {
+    text-decoration: none !important;
+  }
+}

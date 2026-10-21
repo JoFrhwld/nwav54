@@ -1,0 +1,13 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+/.quarto/
+**/*.quarto_ipynb
+get-data.qmd
+analysis.qmd
+data/
+models/
+*_files/
+*.html

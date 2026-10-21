@@ -1,0 +1,10 @@
+typography:
+  fonts:
+    - family: Public Sans
+      source: google
+    - family: Nunito
+      source: google
+    - family: Lobster
+      source: google      
+  base: Public Sans
+  headings: Nunito

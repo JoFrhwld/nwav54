@@ -1,0 +1,11 @@
+project:
+  title: "nwav54"
+
+editor: visual
+
+format: 
+  revealjs: 
+    slide-number: h/v
+    theme: 
+      - default
+      - styles/custom.scss
