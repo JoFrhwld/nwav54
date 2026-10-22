@@ -54,7 +54,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-d106bfce437d0d335c758c7981d89814.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-6dcb8178c5f0a7122884b7311286242f.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -256,27 +256,69 @@ Josef Fruehwald
 </section>
 <section id="demonstration-by-simulation" class="slide level2 center">
 <h2>Demonstration by Simulation</h2>
-
+<div class="r-stack">
+<div class="r-stretch">
+<div class="cell">
 <img data-src="./assets/typst-render/index/typst-block-4.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag
+#set page(fill: white)
 #set text(font: &quot;Public Sans&quot;)
 
 #dag(
   labs: (
     &quot;age->vq&quot;: box(fill:white)[#text(size:2em)[0]],
-    &quot;age->arate&quot;: box(fill:white)[#text(size:2em)[-2]],
-    &quot;dob->vq&quot;: bo"></section>
+    &quot;dob->vq&quot;: box(fill:white)[#text(size:2em)[0]]">
+</div>
+</div>
+<div class="fragment r-stretch">
+<div class="cell">
+<img data-src="./assets/typst-render/index/jawn.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag
+#set page(fill: white)
+#set text(font: &quot;Public Sans&quot;)
+
+#dag(
+  labs: (
+    &quot;age->vq&quot;: box(fill:white)[#text(size:2em)[0]],
+    &quot;age->arate&quot;: box(fill:white)[#text(size:2em)[">
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<img data-src="./assets/typst-render/index/typst-block-6.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag
+#set page(fill: white)
+#set text(font: &quot;Public Sans&quot;)
+
+#dag(
+  labs: (
+    &quot;age->vq&quot;: box(fill:white)[#text(size:2em)[0]],
+    &quot;age->arate&quot;: box(fill:white)[#text(size:2em)[">
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<img data-src="./assets/typst-render/index/typst-block-7.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag
+#set page(fill: white)
+#set text(font: &quot;Public Sans&quot;)
+
+#dag(
+  labs: (
+    &quot;age->vq&quot;: box(fill:white)[#text(size:2em)[0]],
+    &quot;age->arate&quot;: box(fill:white)[#text(size:2em)[">
+</div>
+</div>
+</div>
+</section>
 <section id="demonstration-by-simulation-1" class="slide level2 center">
 <h2>Demonstration by Simulation</h2>
 <div class="cell quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-13-1.svg"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.svg"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-13-2.svg"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-16-2.svg"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-13-3.svg"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-16-3.svg"></p>
 </div>
 </div>
 </div>
@@ -291,7 +333,7 @@ Josef Fruehwald
 <section id="age-rate-backdoor" class="slide level2 center">
 <h2>Age &amp; Rate Backdoor</h2>
 
-<img data-src="./assets/typst-render/index/typst-block-5.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
+<img data-src="./assets/typst-render/index/typst-block-8.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
 #set text(font: &quot;Public Sans&quot;)
 
 #dag(
@@ -305,11 +347,11 @@ Josef Fruehwald
 <section id="age-backdoor" class="slide level2 center">
 <h2>Age Backdoor</h2>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-19-1.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="closing-the-age-backdoor" class="slide level2 center">
 <h2>Closing the Age Backdoor</h2>
 
-<img data-src="./assets/typst-render/index/typst-block-6.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
+<img data-src="./assets/typst-render/index/typst-block-9.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
 #set text(font: &quot;Public Sans&quot;)
 
 #dag(
@@ -322,11 +364,11 @@ Josef Fruehwald
 <section id="closing-the-age-backdoor-1" class="slide level2 center">
 <h2>Closing the Age Backdoor</h2>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-18-1.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-21-1.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="closing-the-speech-rate-backdoor" class="slide level2 center">
 <h2>Closing the speech rate backdoor?</h2>
 
-<img data-src="./assets/typst-render/index/typst-block-7.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
+<img data-src="./assets/typst-render/index/typst-block-10.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
 #set text(font: &quot;Public Sans&quot;)
 
 #dag(
@@ -340,7 +382,7 @@ Josef Fruehwald
 <section id="closing-the-speech-rate-backdoor-1" class="slide level2 center">
 <h2>Closing the speech rate backdoor?</h2>
 
-<img data-src="./assets/typst-render/index/typst-block-8.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
+<img data-src="./assets/typst-render/index/typst-block-11.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
 #set text(font: &quot;Public Sans&quot;)
 
 #dag(
@@ -353,11 +395,11 @@ Josef Fruehwald
 <section id="closing-the-speech-rate-backdoor-2" class="slide level2 center">
 <h2>Closing the speech rate backdoor?</h2>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-21-1.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-24-1.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="closing-the-speech-rate-backdoor-3" class="slide level2 center">
 <h2>Closing the speech rate backdoor</h2>
 
-<img data-src="./assets/typst-render/index/typst-block-9.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
+<img data-src="./assets/typst-render/index/typst-block-12.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
 #set text(font: &quot;Public Sans&quot;)
 
 #dag(
@@ -372,11 +414,11 @@ Josef Fruehwald
 <section id="closing-the-speech-rate-backdoor-4" class="slide level2 center">
 <h2>Closing the speech rate backdoor</h2>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-23-1.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-26-1.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="more-backdoors" class="slide level2 center">
 <h2>More Backdoors?</h2>
 
-<img data-src="./assets/typst-render/index/typst-block-10.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
+<img data-src="./assets/typst-render/index/typst-block-13.svg" class="img-fluid r-stretch" alt="#import &quot;def_dag.typ&quot;: dag, blue, red, green
 #set text(font: &quot;Public Sans&quot;)
 
 #dag(
@@ -401,22 +443,22 @@ Josef Fruehwald
 
     <script>
       // Create table-specific functions using external factory
-      const tableFns_sz3ow85aixt2luxo7qxo = TinyTable.createTableFunctions("tinytable_sz3ow85aixt2luxo7qxo");
+      const tableFns_0re39pnvagp2tzbbrcrs = TinyTable.createTableFunctions("tinytable_0re39pnvagp2tzbbrcrs");
       // tinytable span after
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 } ], css_id: 'tinytable_css_jb2t4j50uwrk9s7amcw7',}, 
-          { positions: [ { i: '1', j: 2 }, { i: '1', j: 3 }, { i: '1', j: 4 } ], css_id: 'tinytable_css_90p61uxuki9ho5pdgpu4',}, 
-          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 } ], css_id: 'tinytable_css_l20lj0j4gr01zzweljdp',}, 
-          { positions: [ { i: '2', j: 1 }, { i: '2', j: 5 } ], css_id: 'tinytable_css_n1ktp0v9o4cn5ff91ot4',}, 
-          { positions: [ { i: '0', j: 1 }, { i: '0', j: 5 } ], css_id: 'tinytable_css_0zph9kp6zs2x4jok0w9t',}, 
+          { positions: [ { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 } ], css_id: 'tinytable_css_7zvm45uj3yvsx4naipfx',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '1', j: 3 }, { i: '1', j: 4 } ], css_id: 'tinytable_css_q5lwer9tsij5fi7i9ldu',}, 
+          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 } ], css_id: 'tinytable_css_0bvu9cpkj1y34rgw9rvv',}, 
+          { positions: [ { i: '2', j: 1 }, { i: '2', j: 5 } ], css_id: 'tinytable_css_m7ak8g2g4uzgdvbjjksa',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 5 } ], css_id: 'tinytable_css_t6gxign9u70892sfft6f',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  tableFns_sz3ow85aixt2luxo7qxo.styleCell(cell.i, cell.j, group.css_id);
+                  tableFns_0re39pnvagp2tzbbrcrs.styleCell(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -425,14 +467,14 @@ Josef Fruehwald
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
     <style>
     /* tinytable css entries after */
-    #tinytable_sz3ow85aixt2luxo7qxo td.tinytable_css_jb2t4j50uwrk9s7amcw7, #tinytable_sz3ow85aixt2luxo7qxo th.tinytable_css_jb2t4j50uwrk9s7amcw7 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: right }
-    #tinytable_sz3ow85aixt2luxo7qxo td.tinytable_css_90p61uxuki9ho5pdgpu4, #tinytable_sz3ow85aixt2luxo7qxo th.tinytable_css_90p61uxuki9ho5pdgpu4 { text-align: right }
-    #tinytable_sz3ow85aixt2luxo7qxo td.tinytable_css_l20lj0j4gr01zzweljdp, #tinytable_sz3ow85aixt2luxo7qxo th.tinytable_css_l20lj0j4gr01zzweljdp {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: right }
-    #tinytable_sz3ow85aixt2luxo7qxo td.tinytable_css_n1ktp0v9o4cn5ff91ot4, #tinytable_sz3ow85aixt2luxo7qxo th.tinytable_css_n1ktp0v9o4cn5ff91ot4 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
-    #tinytable_sz3ow85aixt2luxo7qxo td.tinytable_css_0zph9kp6zs2x4jok0w9t, #tinytable_sz3ow85aixt2luxo7qxo th.tinytable_css_0zph9kp6zs2x4jok0w9t {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
+    #tinytable_0re39pnvagp2tzbbrcrs td.tinytable_css_7zvm45uj3yvsx4naipfx, #tinytable_0re39pnvagp2tzbbrcrs th.tinytable_css_7zvm45uj3yvsx4naipfx {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: right }
+    #tinytable_0re39pnvagp2tzbbrcrs td.tinytable_css_q5lwer9tsij5fi7i9ldu, #tinytable_0re39pnvagp2tzbbrcrs th.tinytable_css_q5lwer9tsij5fi7i9ldu { text-align: right }
+    #tinytable_0re39pnvagp2tzbbrcrs td.tinytable_css_0bvu9cpkj1y34rgw9rvv, #tinytable_0re39pnvagp2tzbbrcrs th.tinytable_css_0bvu9cpkj1y34rgw9rvv {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: right }
+    #tinytable_0re39pnvagp2tzbbrcrs td.tinytable_css_m7ak8g2g4uzgdvbjjksa, #tinytable_0re39pnvagp2tzbbrcrs th.tinytable_css_m7ak8g2g4uzgdvbjjksa {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
+    #tinytable_0re39pnvagp2tzbbrcrs td.tinytable_css_t6gxign9u70892sfft6f, #tinytable_0re39pnvagp2tzbbrcrs th.tinytable_css_t6gxign9u70892sfft6f {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
     </style>
     <div class="container">
-      <table class="tinytable" id="tinytable_sz3ow85aixt2luxo7qxo" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="tinytable" id="tinytable_0re39pnvagp2tzbbrcrs" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         
         <thead>
               <tr>
@@ -481,7 +523,7 @@ Josef Fruehwald
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-30-1.svg" class="quarto-figure quarto-figure-center" style="width:150.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-33-1.svg" class="quarto-figure quarto-figure-center" style="width:150.0%"></p>
 </figure>
 </div>
 </div>
@@ -490,7 +532,7 @@ Josef Fruehwald
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-31-1.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-34-1.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -499,7 +541,7 @@ Josef Fruehwald
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-32-1.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-35-1.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -508,7 +550,7 @@ Josef Fruehwald
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-33-1.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-36-1.svg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -518,7 +560,7 @@ Josef Fruehwald
 <section id="american-raising-results-1" class="slide level2 center">
 <h2>American Raising Results</h2>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-35-1.svg" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-38-1.svg" class="r-stretch"></section>
 <section id="a-peripheralizing-change-ey-raising-in-philadelphia" class="slide level2 smaller center">
 <h2>A peripheralizing change: /ey/ Raising in Philadelphia</h2>
 <ul>
@@ -532,22 +574,22 @@ Josef Fruehwald
 
     <script>
       // Create table-specific functions using external factory
-      const tableFns_qfu5pete2xx9zusg77ek = TinyTable.createTableFunctions("tinytable_qfu5pete2xx9zusg77ek");
+      const tableFns_2ecvv71rrllc65m7wi24 = TinyTable.createTableFunctions("tinytable_2ecvv71rrllc65m7wi24");
       // tinytable span after
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 } ], css_id: 'tinytable_css_vozzpjb09z4h9u4j5gp9',}, 
-          { positions: [ { i: '1', j: 2 }, { i: '1', j: 3 }, { i: '1', j: 4 } ], css_id: 'tinytable_css_vvb7gvr3y83npxj9jc1o',}, 
-          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 } ], css_id: 'tinytable_css_2hayht9djpv1ohvfm99l',}, 
-          { positions: [ { i: '2', j: 1 }, { i: '2', j: 5 } ], css_id: 'tinytable_css_xcotzxm6kfwaslcmdvm5',}, 
-          { positions: [ { i: '0', j: 1 }, { i: '0', j: 5 } ], css_id: 'tinytable_css_lv42zqnce8d1ozbnvtrn',}, 
+          { positions: [ { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 } ], css_id: 'tinytable_css_q2bdvevuoqfrb8gwu6ld',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '1', j: 3 }, { i: '1', j: 4 } ], css_id: 'tinytable_css_q34y0hqdrkeimq21oddl',}, 
+          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 } ], css_id: 'tinytable_css_6ze11xkuruq708zvgdv4',}, 
+          { positions: [ { i: '2', j: 1 }, { i: '2', j: 5 } ], css_id: 'tinytable_css_dcgyfez9ylvm5ji6eg4f',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 5 } ], css_id: 'tinytable_css_en3ml42mc1ddmcbjz03u',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  tableFns_qfu5pete2xx9zusg77ek.styleCell(cell.i, cell.j, group.css_id);
+                  tableFns_2ecvv71rrllc65m7wi24.styleCell(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -556,14 +598,14 @@ Josef Fruehwald
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
     <style>
     /* tinytable css entries after */
-    #tinytable_qfu5pete2xx9zusg77ek td.tinytable_css_vozzpjb09z4h9u4j5gp9, #tinytable_qfu5pete2xx9zusg77ek th.tinytable_css_vozzpjb09z4h9u4j5gp9 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: right }
-    #tinytable_qfu5pete2xx9zusg77ek td.tinytable_css_vvb7gvr3y83npxj9jc1o, #tinytable_qfu5pete2xx9zusg77ek th.tinytable_css_vvb7gvr3y83npxj9jc1o { text-align: right }
-    #tinytable_qfu5pete2xx9zusg77ek td.tinytable_css_2hayht9djpv1ohvfm99l, #tinytable_qfu5pete2xx9zusg77ek th.tinytable_css_2hayht9djpv1ohvfm99l {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: right }
-    #tinytable_qfu5pete2xx9zusg77ek td.tinytable_css_xcotzxm6kfwaslcmdvm5, #tinytable_qfu5pete2xx9zusg77ek th.tinytable_css_xcotzxm6kfwaslcmdvm5 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
-    #tinytable_qfu5pete2xx9zusg77ek td.tinytable_css_lv42zqnce8d1ozbnvtrn, #tinytable_qfu5pete2xx9zusg77ek th.tinytable_css_lv42zqnce8d1ozbnvtrn {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
+    #tinytable_2ecvv71rrllc65m7wi24 td.tinytable_css_q2bdvevuoqfrb8gwu6ld, #tinytable_2ecvv71rrllc65m7wi24 th.tinytable_css_q2bdvevuoqfrb8gwu6ld {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: right }
+    #tinytable_2ecvv71rrllc65m7wi24 td.tinytable_css_q34y0hqdrkeimq21oddl, #tinytable_2ecvv71rrllc65m7wi24 th.tinytable_css_q34y0hqdrkeimq21oddl { text-align: right }
+    #tinytable_2ecvv71rrllc65m7wi24 td.tinytable_css_6ze11xkuruq708zvgdv4, #tinytable_2ecvv71rrllc65m7wi24 th.tinytable_css_6ze11xkuruq708zvgdv4 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: right }
+    #tinytable_2ecvv71rrllc65m7wi24 td.tinytable_css_dcgyfez9ylvm5ji6eg4f, #tinytable_2ecvv71rrllc65m7wi24 th.tinytable_css_dcgyfez9ylvm5ji6eg4f {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
+    #tinytable_2ecvv71rrllc65m7wi24 td.tinytable_css_en3ml42mc1ddmcbjz03u, #tinytable_2ecvv71rrllc65m7wi24 th.tinytable_css_en3ml42mc1ddmcbjz03u {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
     </style>
     <div class="container">
-      <table class="tinytable" id="tinytable_qfu5pete2xx9zusg77ek" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="tinytable" id="tinytable_2ecvv71rrllc65m7wi24" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         
         <thead>
               <tr>
@@ -608,11 +650,11 @@ Josef Fruehwald
 <section id="ey-raising-results" class="slide level2 center">
 <h2>/ey/ Raising Results</h2>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-43-1.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
 <section id="ey-raising-results-1" class="slide level2 center">
 <h2>/ey/ Raising Results</h2>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-42-1.svg" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-45-1.svg" class="r-stretch"></section>
 <section id="conclusions" class="slide level2 center">
 <h2>Conclusions</h2>
 <ul>
@@ -988,7 +1030,7 @@ Textor, Johannes, Benito Van Der Zander, Mark S. Gilthorpe, Maciej Liśkiewicz, 
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp('/' + window.location.host + '/');
+            var filterRegex = new RegExp("https:\/\/JoFrhwld\.github\.io\/nwav54\/");
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }
